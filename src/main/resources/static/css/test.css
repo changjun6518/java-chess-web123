@@ -1,0 +1,22 @@
+html {
+    background-color: beige;
+}
+
+body {
+    background: aquamarine;
+}
+
+#index-title {
+    display: flex;
+    justify-content: center;
+}
+
+.testtest {
+    width: 85%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px blueviolet;
+    border-radius: 12px;
+}

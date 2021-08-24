@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
     <meta charset="UTF-8">
     <title>Thymeleaf 예제</title>
-</head>
-<body>
-<h1>Thymeleaf 예제</h1>
-<span th:text="${user.userId}"></span><br/>
-<span th:text="${user.name}"></span><br/>
-<span th:text="${user.authType}"></span><br/>
-</body>
+    <link th:href="@{/css/test.css}" rel="stylesheet"/>
+
+    </head>
+    <body>
+        <h1 id="index-title">Thymeleaf 예제</h1>
+            <div class="testtest">
+                <span th:text="${user.userId}"></span><br/>
+                <span th:text="${user.name}"></span><br/>
+                <span th:text="${user.authType}"></span><br/>
+            </div>
+    </body>
 </html>
