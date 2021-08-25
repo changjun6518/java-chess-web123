@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chess game</title>
+    <link type="text/css" rel="stylesheet" href="/css/board.css">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="inner m-center">
+        <div class="title">
+            보스독의 체스 게임
+        </div>
+    </div>
+</header>
+<section class="information" id="game-information">
+    <div class="presenter turn" id="turn-presenter"></div>
+
+    <button class="mini-control-btn" id="exit-button">나가기</button>
+    <button class="mini-control-btn" id="score-button">점수 보기</button>
+    <div class="presenter score" id="score-presenter">
+        <div id="white-score"></div>
+        <div id="black-score"></div>
+    </div>
+</section>
+<section class="board">
+    <div class="inner m-center" id="board-inner">
+    </div>
+</section>
+<script type="module" src="/js/view/Board.js"></script>
+</body>
+</html>

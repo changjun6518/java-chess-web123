@@ -1,0 +1,101 @@
+body {
+    font-family: 'Do Hyeon', sans-serif;
+    background-image: url("/images/bg.png");
+    position: relative;
+}
+
+img {
+    height: 75px;
+    width: 75px;
+}
+
+.m-center {
+    margin: 0 auto;
+}
+
+.mini-control-btn {
+    width: 100px;
+    height: 40px;
+    margin: 6px;
+    border: solid violet 2px;
+    background-color: darkorange;
+    border-radius: 5px;
+}
+
+.mini-control-btn:hover{
+    width: 100px;
+    height: 40px;
+    margin: 6px;
+    border: solid violet 2px;
+    background-color: greenyellow;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* HEADER */
+header .inner {
+    width: 600px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px blueviolet;
+    border-radius: 12px;
+}
+
+header .inner .title {
+    color: violet;
+    font-size: 48px;
+}
+
+/* INFORMATION */
+.information {
+    position: absolute;
+    top: 100px;
+    left: 10px;
+    width: 180px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.information .presenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blueviolet;
+    padding: 9px;
+    color: whitesmoke;
+    font-size: 18px;
+}
+
+.information .score {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* BOARD */
+
+.board {
+    margin-top: 20px;
+}
+.board .squares .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.board .square {
+    width: 74px;
+    height: 74px;
+}
+
+.white-square {
+    background-color: #ffdead;
+}
+
+.black-square {
+    background-color: #a0522d;
+}
