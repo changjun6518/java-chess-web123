@@ -2,6 +2,8 @@ package demo.javachess.domain.util;
 
 import demo.javachess.exception.InvalidPositionException;
 
+import java.util.Objects;
+
 public class Position {
     private static final int ASCII_GAP = 96;
     private static final int NUMBER_GAP = 48;
@@ -51,5 +53,18 @@ public class Position {
 
     public int getRow() {
         return row;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Position position = (Position) o;
+        return Objects.equals(col, position.col) &&
+                Objects.equals(row, position.row);
     }
 }

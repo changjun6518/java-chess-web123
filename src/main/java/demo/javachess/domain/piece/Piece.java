@@ -73,4 +73,9 @@ public abstract class Piece {
     public char getRepresentation() {
         return representation;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(representation);
+    }
 }
