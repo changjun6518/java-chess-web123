@@ -11,3 +11,4 @@ spring 프레임워크 기반으로 웹 어플리케이션을 개발
 ### 구현 목록
 [기존chessRepo](https://github.com/changjun6518/java-chess)
 
+- [ ] square 클래스
