@@ -2,9 +2,11 @@ package demo.javachess.domain;
 
 import demo.javachess.domain.Exception.InvalidPositionException;
 
+import javax.persistence.Embeddable;
 import java.util.HashMap;
 import java.util.Map;
 
+@Embeddable
 public class Position {
     static final int ASCII_GAP = 96;
 
@@ -13,7 +15,15 @@ public class Position {
 
     private static final Map<String, Position> BOARD_POSITIONS = new HashMap<>();
 
+    static {}
+
+
+    public Position() {
+
+    }
+
     public Position(int file, int rank) {
+        super();
         this.file = file;
         this.rank = rank;
     }
