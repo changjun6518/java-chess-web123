@@ -7,6 +7,7 @@ import demo.javachess.domain.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,5 +35,10 @@ public class BoardService {
         Board board = boardRepository.findById(id)
                 .orElseThrow(NotExistBoardException::new);
         return BoardRes.from(board);
+    }
+
+    public List<BoardRes> findAllBoards() {
+        List<Board> boards = boardRepository.findAll();
+        return BoardRes.fromList(boards);
     }
 }

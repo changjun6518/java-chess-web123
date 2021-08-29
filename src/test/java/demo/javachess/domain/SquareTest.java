@@ -20,7 +20,7 @@ class SquareTest {
 
     private static Stream<Arguments> getCasesForPiece() {
         return Stream.of(
-                Arguments.of(new Square(new Position(1, 1), State.WHITE, Piece.ROOK),Piece.ROOK)
+                Arguments.of(new Square(new Position('a', 1), State.WHITE, Piece.ROOK),Piece.ROOK)
         );
     }
 

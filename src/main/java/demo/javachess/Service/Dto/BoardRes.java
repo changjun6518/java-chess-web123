@@ -3,7 +3,9 @@ package demo.javachess.Service.Dto;
 import demo.javachess.domain.Board;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class BoardRes {
     private Long id;
@@ -24,7 +26,21 @@ public class BoardRes {
         return new BoardRes(board.getId(), squares, board.getTurn());
     }
 
+    public static List<BoardRes> fromList(List<Board> boards) {
+        return boards.stream()
+                .map(BoardRes::from)
+                .collect(Collectors.toList());
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public Map<String, String> getSquares() {
+        return squares;
+    }
+
+    public String getTurn() {
+        return turn;
     }
 }

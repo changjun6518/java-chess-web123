@@ -38,6 +38,8 @@ class BoardServiceTest {
 
         boardService.createBoard();
 
+        System.out.println(board.getTurn());
+
         verify(boardRepository).save(any());
     }
 }

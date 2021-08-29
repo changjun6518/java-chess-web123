@@ -16,7 +16,7 @@ public class Position {
     static final int MAX_RANK_SIZE = 8;
     static final int ASCII_GAP = 96;
 
-    private int file;
+    private char file;
     private int rank;
 
     private static final Map<String, Position> BOARD_POSITIONS = new HashMap<>();
@@ -33,7 +33,7 @@ public class Position {
 
     }
 
-    public Position(int file, int rank) {
+    public Position(char file, int rank) {
         super();
         this.file = file;
         this.rank = rank;
@@ -48,7 +48,7 @@ public class Position {
 
 
     public static Position of(final char file, final int rank) {
-        return new Position((file - ASCII_GAP), rank);
+        return new Position(file, rank);
     }
 
     public Position updateWith(final Direction direction) {
