@@ -36,6 +36,28 @@ public class Square {
     }
 
     public boolean isBlank() {
-        return state.equals(State.NONE);
+        return state.equals(State.NONE) && piece == Piece.NONE;
     }
+
+    public boolean isSameTeam(Square targetSquare) {
+        return state == targetSquare.getState();
+    }
+
+    public boolean isOtherTeam(Square targetSquare) {
+        return state != targetSquare.getState();
+    }
+
+    public boolean isWhite() {
+        return state == State.WHITE;
+    }
+
+    private boolean isBlack() {
+        return state == State.BLACK;
+    }
+    public boolean isFirstTurn() {
+        return (isWhite() && position.getRank() == 2) |
+                (isBlack() && position.getRank() == 7);
+    }
+
+
 }

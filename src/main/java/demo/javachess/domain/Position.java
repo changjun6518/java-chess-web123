@@ -1,12 +1,14 @@
 package demo.javachess.domain;
 
 import demo.javachess.domain.Exception.InvalidPositionException;
+import lombok.Getter;
 
 import javax.persistence.Embeddable;
 import java.util.HashMap;
 import java.util.Map;
 
 @Embeddable
+@Getter
 public class Position {
     static final int ASCII_GAP = 96;
 
@@ -38,5 +40,10 @@ public class Position {
 
     public static Position of(final char file, final int rank) {
         return new Position((file - ASCII_GAP), rank);
+    }
+
+    public Position updateWith(final Direction direction) {
+        return Position.from((char) (file + direction.getToFile())
+                + String.valueOf(rank + direction.getToRank()));
     }
 }

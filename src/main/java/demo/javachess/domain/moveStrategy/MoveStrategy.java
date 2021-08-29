@@ -7,5 +7,5 @@ import demo.javachess.domain.Position;
 import java.util.List;
 
 public interface MoveStrategy {
-    public List<Position> possiblePositions(Board board, Piece piece);
+    public List<Position> findPossiblePaths(Board board, Position position);
 }

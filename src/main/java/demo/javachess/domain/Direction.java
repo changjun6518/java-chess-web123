@@ -1,5 +1,9 @@
 package demo.javachess.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public enum Direction {
     NORTH(0, 1),
     SOUTH(0, -1),
@@ -31,4 +35,77 @@ public enum Direction {
         this.toRank = toRank;
     }
 
+    public int getToFile() {
+        return toFile;
+    }
+
+    public int getToRank() {
+        return toRank;
+    }
+
+    public static List<Direction> getKingDirections() {
+        return new ArrayList<>(
+                Arrays.asList(NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH_WEST, WEST, SOUTH, NORTH_WEST)
+        );
+    }
+    public static List<Direction> getQueenDirections() {
+        return new ArrayList<>(
+                Arrays.asList(NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST)
+        );
+    }
+
+    public static List<Direction> getRookDirections() {
+        return new ArrayList<>(
+                Arrays.asList(NORTH, EAST, SOUTH, WEST)
+        );
+    }
+
+    public static List<Direction> getBishopDirections() {
+        return new ArrayList<>(
+                Arrays.asList(NORTH_EAST, SOUTH_EAST, SOUTH_WEST, NORTH_WEST)
+        );
+    }
+
+    public static List<Direction> getKnightDirections() {
+        return new ArrayList<>(
+                Arrays.asList(NORTH_NORTH_EAST, EAST_EAST_NORTH,
+                        EAST_EAST_SOUTH, SOUTH_SOUTH_EAST,
+                        SOUTH_SOUTH_WEST, WEST_WEST_SOUTH,
+                        WEST_WEST_NORTH, NORTH_NORTH_WEST)
+        );
+    }
+
+    public static List<Direction> getWhitePawnDirections() {
+        return new ArrayList<>(
+                Arrays.asList(NORTH, NORTH_EAST, NORTH_WEST)
+        );
+    }
+
+    public static List<Direction> getBlackPawnDirections() {
+        return new ArrayList<>(
+                Arrays.asList(SOUTH, SOUTH_EAST, SOUTH_WEST)
+        );
+    }
+
+    public static List<Direction> firstWhitePawnDirections() {
+        return new ArrayList<>(
+                Arrays.asList(NORTH, NORTH_NORTH, NORTH_EAST, NORTH_WEST)
+        );
+    }
+
+    public static List<Direction> firstBlackPawnDirections() {
+        return new ArrayList<>(
+                Arrays.asList(SOUTH, SOUTH_SOUTH, SOUTH_EAST, SOUTH_WEST)
+        );
+    }
+
+    public boolean isStraight() {
+        return this == NORTH | this == NORTH_NORTH |
+                this == SOUTH | this == SOUTH_SOUTH;
+    }
+
+    public boolean isDiagonal() {
+        return this == NORTH_EAST | this == NORTH_WEST |
+                this == SOUTH_EAST | this == SOUTH_WEST;
+    }
 }
