@@ -1,9 +1,7 @@
 package demo.javachess.domain;
 
-import demo.javachess.domain.Exception.InvalidMoveException;
-import demo.javachess.domain.Exception.NoSuchSquareException;
-import demo.javachess.domain.Exception.NotProperTurnException;
-import demo.javachess.domain.Exception.StartFromBlankException;
+import demo.javachess.domain.Exception.*;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,6 +9,7 @@ import java.util.Objects;
 
 @Entity
 public class Board {
+    private static final int BOARD_SIZE = 64;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +23,11 @@ public class Board {
     private State turn;
 
     public Board(List<Square> squares) {
+        if (squares.size() != BOARD_SIZE) {
+            throw new InvalidBoardSizeException();
+        }
         this.squares = squares;
+        this.turn = State.WHITE;
     }
 
 
@@ -69,5 +72,17 @@ public class Board {
                 square.update(piece, state);
             }
         });
+    }
+
+    public List<Square> getSquares() {
+        return squares;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTurn() {
+        return turn.name();
     }
 }

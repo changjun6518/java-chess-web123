@@ -7,10 +7,13 @@ import javax.persistence.Embeddable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 @Embeddable
 @Getter
 public class Position {
+    static final int MIN_RANK_SIZE = 1;
+    static final int MAX_RANK_SIZE = 8;
     static final int ASCII_GAP = 96;
 
     private int file;
@@ -19,6 +22,10 @@ public class Position {
     private static final Map<String, Position> BOARD_POSITIONS = new HashMap<>();
 
     static {
+        IntStream.rangeClosed(MIN_RANK_SIZE, MAX_RANK_SIZE)
+                .forEach(i -> IntStream.rangeClosed(MIN_RANK_SIZE, MAX_RANK_SIZE)
+                        .forEach(j -> BOARD_POSITIONS.put((char) (i + ASCII_GAP) + String.valueOf(j),
+                                new Position((char)(i + ASCII_GAP), j))));
     }
 
 

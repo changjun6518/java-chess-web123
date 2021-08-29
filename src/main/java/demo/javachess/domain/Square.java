@@ -69,4 +69,15 @@ public class Square {
         this.piece = piece;
         this.state = state;
     }
+
+    public String getPositionValue() {
+        return String.valueOf(position.getFile()) + String.valueOf(position.getRank());
+    }
+
+    public String getPieceTeam() {
+        if (piece == Piece.NONE) {
+            return "BLANK";
+        }
+        return state.name() + "_" + piece.name();
+    }
 }
