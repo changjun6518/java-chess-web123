@@ -6,6 +6,7 @@ import lombok.Getter;
 import javax.persistence.Embeddable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Embeddable
 @Getter
@@ -17,7 +18,8 @@ public class Position {
 
     private static final Map<String, Position> BOARD_POSITIONS = new HashMap<>();
 
-    static {}
+    static {
+    }
 
 
     public Position() {
@@ -45,5 +47,18 @@ public class Position {
     public Position updateWith(final Direction direction) {
         return Position.from((char) (file + direction.getToFile())
                 + String.valueOf(rank + direction.getToRank()));
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Position position = (Position) o;
+        return file == position.file &&
+                rank == position.rank;
     }
 }

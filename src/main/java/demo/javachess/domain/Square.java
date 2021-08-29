@@ -35,6 +35,11 @@ public class Square {
         return new Square(position, state, piece);
     }
 
+    public boolean movable(final Board board, final Position to) {
+        return piece.findPossiblePaths(board, to).contains(to);
+    }
+
+
     public boolean isBlank() {
         return state.equals(State.NONE) && piece == Piece.NONE;
     }
@@ -60,4 +65,8 @@ public class Square {
     }
 
 
+    public void update(final Piece piece, final State state) {
+        this.piece = piece;
+        this.state = state;
+    }
 }

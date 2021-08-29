@@ -11,10 +11,12 @@ import java.util.List;
 
 public class PawnMoveStrategy implements MoveStrategy {
 
-    private final List<Direction> directions;
+    private final List<Direction> whiteDirections;
+    private final List<Direction> blackDirections;
 
     public PawnMoveStrategy(List<Direction> directions) {
-        this.directions = directions;
+        this.whiteDirections = directions.subList(0, 3);
+        this.blackDirections = directions.subList(3, 6);
     }
 
     @Override
@@ -25,13 +27,13 @@ public class PawnMoveStrategy implements MoveStrategy {
             if (square.isFirstTurn()) {
                 findPathWith(Direction.firstWhitePawnDirections(), square, board, position);
             }
-            return findPathWith(directions, square, board, position);
+            return findPathWith(whiteDirections, square, board, position);
         }
 
         if (square.isFirstTurn()) {
             return findPathWith(Direction.firstBlackPawnDirections(), square, board, position);
         }
-        return findPathWith(directions, square, board, position);
+        return findPathWith(blackDirections, square, board, position);
     }
 
     private List<Position> findPathWith(List<Direction> directions, Square square, Board board, Position position) {

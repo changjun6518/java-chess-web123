@@ -1,5 +1,6 @@
 package demo.javachess.domain;
 
+import demo.javachess.domain.Exception.InvalidMoveException;
 import demo.javachess.domain.Exception.NoSuchSquareException;
 import demo.javachess.domain.Exception.NotProperTurnException;
 import demo.javachess.domain.Exception.StartFromBlankException;
@@ -51,5 +52,22 @@ public class Board {
             throw new NotProperTurnException();
         }
 
+        if (fromSquare.movable(this, to)) {
+            updateSquareBy(to, fromSquare.getPiece(), fromSquare.getState());
+            updateSquareBy(from, Piece.NONE, State.NONE);
+
+        }
+
+        throw new InvalidMoveException();
+
+
+    }
+
+    private void updateSquareBy(final Position position, final Piece piece, final State state) {
+        squares.forEach(square -> {
+            if (Objects.equals(square.getPosition(), position)) {
+                square.update(piece, state);
+            }
+        });
     }
 }
