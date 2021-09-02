@@ -16,14 +16,14 @@ public class Square {
     private Position position;
 
     @Enumerated(EnumType.STRING)
-    private State state;
+    private Team team;
     @Enumerated(EnumType.STRING)
     private Piece piece;
 
 
-    public Square(Position position, State state, Piece piece) {
+    public Square(Position position, Team team, Piece piece) {
         this.position = position;
-        this.state = state;
+        this.team = team;
         this.piece = piece;
     }
 
@@ -31,33 +31,33 @@ public class Square {
 
     }
 
-    public static Square of(Position position, State state, Piece piece) {
-        return new Square(position, state, piece);
+    public static Square of(Position position, Team team, Piece piece) {
+        return new Square(position, team, piece);
     }
 
     public boolean movable(final Board board, final Position to) {
-        return piece.findPossiblePaths(board, to).contains(to);
+        return piece.findPossiblePaths(board, position).contains(to);
     }
 
 
     public boolean isBlank() {
-        return state.equals(State.NONE) && piece == Piece.NONE;
+        return team.equals(Team.NONE) && piece == Piece.NONE;
     }
 
     public boolean isSameTeam(Square targetSquare) {
-        return state == targetSquare.getState();
+        return team == targetSquare.getTeam();
     }
 
     public boolean isOtherTeam(Square targetSquare) {
-        return state != targetSquare.getState();
+        return team != targetSquare.getTeam() && (team != Team.NONE && targetSquare.team != Team.NONE);
     }
 
     public boolean isWhite() {
-        return state == State.WHITE;
+        return team == Team.WHITE;
     }
 
     private boolean isBlack() {
-        return state == State.BLACK;
+        return team == Team.BLACK;
     }
     public boolean isFirstTurn() {
         return (isWhite() && position.getRank() == 2) |
@@ -65,9 +65,9 @@ public class Square {
     }
 
 
-    public void update(final Piece piece, final State state) {
+    public void update(final Piece piece, final Team team) {
         this.piece = piece;
-        this.state = state;
+        this.team = team;
     }
 
     public String getPositionValue() {
@@ -78,6 +78,6 @@ public class Square {
         if (piece == Piece.NONE) {
             return "BLANK";
         }
-        return state.name() + "_" + piece.name();
+        return team.name() + "_" + piece.name();
     }
 }

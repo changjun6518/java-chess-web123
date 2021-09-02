@@ -1,7 +1,6 @@
 package demo.javachess.domain;
 
 import demo.javachess.domain.Exception.*;
-import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,14 +19,14 @@ public class Board {
     @JoinColumn(name = "BOARD_ID")
     private List<Square> squares;
 
-    private State turn;
+    private Team turn;
 
     public Board(List<Square> squares) {
         if (squares.size() != BOARD_SIZE) {
             throw new InvalidBoardSizeException();
         }
         this.squares = squares;
-        this.turn = State.WHITE;
+        this.turn = Team.WHITE;
     }
 
 
@@ -51,14 +50,16 @@ public class Board {
         if (fromSquare.isBlank()) {
             throw new StartFromBlankException();
         }
-        if (fromSquare.getState() != turn) {
+        if (fromSquare.getTeam() != turn) {
             throw new NotProperTurnException();
         }
 
         if (fromSquare.movable(this, to)) {
-            updateSquareBy(to, fromSquare.getPiece(), fromSquare.getState());
-            updateSquareBy(from, Piece.NONE, State.NONE);
-
+            Piece toPiece = findSquareBy(to).getPiece();
+            Team movedTurn = fromSquare.getTeam();
+            updateSquareBy(to, fromSquare.getPiece(), fromSquare.getTeam());
+            updateSquareBy(from, Piece.NONE, Team.NONE);
+            return getNextState(toPiece, movedTurn);
         }
 
         throw new InvalidMoveException();
@@ -66,10 +67,17 @@ public class Board {
 
     }
 
-    private void updateSquareBy(final Position position, final Piece piece, final State state) {
+    private State getNextState(final Piece toPiece, final Team movedTurn) {
+        if (toPiece.isKing()) {
+            return new Finished(movedTurn);
+        }
+        return new Playing(movedTurn);
+    }
+
+    public void updateSquareBy(final Position position, final Piece piece, final Team team) {
         squares.forEach(square -> {
             if (Objects.equals(square.getPosition(), position)) {
-                square.update(piece, state);
+                square.update(piece, team);
             }
         });
     }
@@ -84,5 +92,9 @@ public class Board {
 
     public String getTurn() {
         return turn.name();
+    }
+
+    public void updateTurn(final Team nextTurn) {
+        this.turn = nextTurn;
     }
 }

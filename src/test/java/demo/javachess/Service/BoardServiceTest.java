@@ -38,6 +38,13 @@ class BoardServiceTest {
 
         boardService.createBoard();
 
+        board.getSquares().forEach(square -> {
+            System.out.println("시작");
+            if (square.isWhite()) {
+                return;
+            }
+            System.out.println("끝");
+        });
         System.out.println(board.getTurn());
 
         verify(boardRepository).save(any());

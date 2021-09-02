@@ -1,7 +1,7 @@
 import { boardSquaresTemplate } from "/js/utils/templates.js";
 import { EVENT_TYPE } from "/js/utils/constants.js";
 
-function Board() {
+function Board(message) {
     const id = window.location.hash.substring(1)
     const $entire = document.querySelector('body');
     const $boardInner = document.querySelector('#board-inner')
@@ -31,6 +31,7 @@ function Board() {
                     }
                 }).then(data => data.json())
                     .catch(err => console.log(err))
+                alert(moveInfo[0], moveInfo[1], "dqkfasfda");
                 if (state.finished) {
                     confirm(state.movedTurn + "승!, 게임이 끝났습니다!")
                     await fetch(`/boards/${id}/`, {

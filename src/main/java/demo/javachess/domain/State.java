@@ -1,9 +1,7 @@
 package demo.javachess.domain;
 
-public enum State {
-    WHITE,
-    BLACK,
-    NONE
+public interface State {
+    Team getMoveTurn();
 
-
+    Team getNextTurn();
 }

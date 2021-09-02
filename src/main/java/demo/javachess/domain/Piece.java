@@ -27,4 +27,8 @@ public enum Piece {
     public List<Position> findPossiblePaths(Board board, Position position) {
         return moveStrategy.findPossiblePaths(board, position);
     }
+
+    public boolean isKing() {
+        return this == KING;
+    }
 }

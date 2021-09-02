@@ -47,8 +47,8 @@ public class Position {
     }
 
 
-    public static Position of(final char file, final int rank) {
-        return new Position(file, rank);
+    public static Position of(final int file, final int rank) {
+        return new Position((char) (file + ASCII_GAP), rank);
     }
 
     public Position updateWith(final Direction direction) {

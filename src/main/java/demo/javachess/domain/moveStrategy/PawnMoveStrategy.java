@@ -25,7 +25,7 @@ public class PawnMoveStrategy implements MoveStrategy {
 
         if (square.isWhite()) {
             if (square.isFirstTurn()) {
-                findPathWith(Direction.firstWhitePawnDirections(), square, board, position);
+                return findPathWith(Direction.firstWhitePawnDirections(), square, board, position);
             }
             return findPathWith(whiteDirections, square, board, position);
         }
